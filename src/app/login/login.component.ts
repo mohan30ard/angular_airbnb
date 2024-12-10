@@ -27,7 +27,7 @@ export class LoginComponent {
           if (response.token) {
             localStorage.setItem('token', response.token); // Save token to localStorage
             alert('Login successful');
-            this.router.navigate(['/welcome']); // Redirect to the secure route
+            this.router.navigate(['/dashboard']); // Redirect to the secure route
           } else {
             alert('Invalid login response: token missing');
           }
