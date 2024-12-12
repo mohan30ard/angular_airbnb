@@ -16,6 +16,11 @@
     <label for="listingId">Listing ID:</label>
     <input id="listingId" [(ngModel)]="filter.listingId" type="text" placeholder="Listing ID" />
 
+    <!-- add filter for items per page -->
+    <label for="itemsPerPage">Items per page:</label>
+    <input id="itemsPerPage" [(ngModel)]="itemsPerPage" type="number" placeholder="Items per page" min="1" />
+
+
     <button (click)="applyFilters()">Apply Filters</button>
   </div>
 </div>
@@ -32,14 +37,12 @@
     <div class="card-container">
       <div *ngFor="let item of data" class="card">
         <div class="image-container">
-          <img *ngIf="item.images?.picture_url; else placeholder"
-               class="card-image"
-               [src]="item.images.picture_url"
-               [alt]="item.name" />
+          <img *ngIf="item.images?.picture_url; else placeholder" class="card-image" [src]="item.images.picture_url"
+            [alt]="item.name" />
           <ng-template #placeholder>
             <img class="card-image"
-                 src="https://a0.muscache.com/im/pictures/72844c8c-fec2-440e-a752-bba9b268c361.jpg?aki_policy=large"
-                 alt="placeholder" />
+              src="https://a0.muscache.com/im/pictures/72844c8c-fec2-440e-a752-bba9b268c361.jpg?aki_policy=large"
+              alt="placeholder" />
           </ng-template>
 
           <!-- Highlight for superhosts -->

@@ -1,0 +1,93 @@
+/* General container styling */
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Header styling */
+.container h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+/* Profile info section */
+.profile-info {
+  margin-bottom: 20px;
+}
+
+.profile-info p {
+  font-size: 16px;
+  margin: 8px 0;
+  color: #555;
+}
+
+.profile-info p strong {
+  color: #333;
+}
+
+/* Actions section */
+.actions {
+  text-align: center;
+}
+
+.actions button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.actions button:hover {
+  background-color: #0056b3;
+}
+
+.actions a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 16px;
+  margin-left: 10px;
+  transition: color 0.3s;
+}
+
+.actions a:hover {
+  color: #0056b3;
+}
+
+/* Loading message */
+.container p {
+  font-size: 16px;
+  color: #999;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    margin: 20px;
+    padding: 15px;
+  }
+
+  .container h1 {
+    font-size: 20px;
+  }
+
+  .profile-info p {
+    font-size: 14px;
+  }
+
+  .actions button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}

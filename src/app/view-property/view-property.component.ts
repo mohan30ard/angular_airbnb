@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ListingService } from '../listing.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { User } from '../models/user.model';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-view-property',
@@ -12,18 +14,48 @@ import { RouterModule } from '@angular/router';
   styleUrl: './view-property.component.css'
 })
 export class ViewPropertyComponent {
+  userDetails :User | null = null;
   propertyId: string = '';
   property: any = {}; // Store the property details here
+  isAdmin: boolean = false;
 
   constructor(
     private router: Router,
-    private listingService: ListingService // Assuming you have a data service
+    private listingService: ListingService, // Assuming you have a data service
+    private authService: AuthService // Assuming you have an auth service
   ) {}
 
   ngOnInit(): void {
     this.propertyId = this.listingService.getCurrentListing(); // Get the property ID from the service
     this.fetchPropertyDetails(); // Fetch the property details
+    this.fetchUserDetails(); // Fetch the user details
   }
+
+  fetchUserDetails(): void {
+    this.authService.getUserDetails().subscribe({
+      next: (response: any) => {
+        this.userDetails = response;
+        this.isAdmin = this.userDetails?.role === 'admin';
+        console.log(this.isAdmin);
+        console.log('User details:', this.userDetails);
+      },
+      error: (err) => {
+        console.error('Failed to fetch user details:', err);
+      },
+    });
+  }
+
+  // this.authService.getUserDetails().subscribe({
+  //   next: (response: any) => {
+  //     this.userDetails = response;
+  //     this.userRole = this.userDetails?.role || 'user';
+  //     console.log('User details:', this.userDetails);
+  //     this.filterNavDataBasedOnRole();
+  //   },
+  //   error: (err) => {
+  //     console.error('Failed to fetch user details:', err);
+  //   },
+  // });
 
   fetchPropertyDetails(): void {
     this.listingService.getListingById(this.propertyId).subscribe({

@@ -1,27 +1,50 @@
 <div class="property-detail-container">
-  <h1>Beautiful Modern Apartment</h1>
+  <h1>{{ property.name }}</h1>
   <div class="image-container">
-    <img *ngIf="property.images?.picture_url; else placeholder"
-         [src]="property.images.picture_url"
-         [alt]="property.name" />
+    <img *ngIf="property.images?.picture_url; else placeholder" [src]="property.images.picture_url"
+      [alt]="property.name" />
     <ng-template #placeholder>
-      <img src="https://a0.muscache.com/im/pictures/72844c8c-fec2-440e-a752-bba9b268c361.jpg?aki_policy=large" alt="placeholder" />
+      <img src="https://a0.muscache.com/im/pictures/72844c8c-fec2-440e-a752-bba9b268c361.jpg?aki_policy=large"
+        alt="placeholder" />
     </ng-template>
   </div>
 
   <div class="property-info">
-    <p><strong>Name:</strong>{{property.name}}</p>
-    <p><strong>Property Type:</strong>{{property.property_type}}</p>
-    <p><strong>Price:</strong>{{property.price}}</p>
-    <p><strong>Min Nights:</strong>{{property.minimum_nights}}</p>
-    <p><strong>Max Nights:</strong>{{property.maximum_nights}}</p>
-    <p><strong>Accommodates:</strong>{{property.accommodates}}</p>
-    <p><strong>Country:</strong>{{ property.address?.country }}</p>
-    <p><strong>Description:</strong>{{property.summary}}</p>
-    <a href="https://www.example.com" target="_blank">Book Property</a> &nbsp;&nbsp;
-    <a href="javascript:void(0)" (click)="deleteListing()">Delete Property</a> &nbsp;&nbsp;
+    <p><strong>Name:</strong> {{ property.name }}</p>
+    <p><strong>Summary:</strong> {{ property.summary }}</p>
+    <p><strong>Description:</strong> {{ property.description }}</p>
+    <p><strong>Space:</strong> {{ property.space }}</p>
+    <p><strong>Neighborhood Overview:</strong> {{ property.neighborhood_overview }}</p>
+    <p><strong>Notes:</strong> {{ property.notes }}</p>
+    <p><strong>Transit:</strong> {{ property.transit }}</p>
+    <p><strong>Interaction:</strong> {{ property.interaction }}</p>
+    <p><strong>House Rules:</strong> {{ property.house_rules }}</p>
+    <p><strong>Property Type:</strong> {{ property.property_type }}</p>
+    <p><strong>Room Type:</strong> {{ property.room_type }}</p>
+    <p><strong>Bed Type:</strong> {{ property.bed_type }}</p>
+    <p><strong>Min Nights:</strong> {{ property.minimum_nights }}</p>
+    <p><strong>Max Nights:</strong> {{ property.maximum_nights }}</p>
+    <p><strong>Cancellation Policy:</strong> {{ property.cancellation_policy }}</p>
+    <p><strong>Accommodates:</strong> {{ property.accommodates }}</p>
+    <p><strong>Bedrooms:</strong> {{ property.bedrooms }}</p>
+    <p><strong>Beds:</strong> {{ property.beds }}</p>
+    <p><strong>Bathrooms:</strong> {{ property.bathrooms?.$numberDecimal }}</p>
+    <p><strong>Price:</strong> ${{ property.price?.$numberDecimal }}</p>
+    <p><strong>Weekly Price:</strong> ${{ property.weekly_price?.$numberDecimal }}</p>
+    <p><strong>Monthly Price:</strong> ${{ property.monthly_price?.$numberDecimal }}</p>
+    <p><strong>Cleaning Fee:</strong> ${{ property.cleaning_fee?.$numberDecimal }}</p>
+    <p><strong>Amenities:</strong> {{ property.amenities?.join(', ') }}</p>
+    <p><strong>Host Name:</strong> {{ property.host?.host_name }}</p>
+    <p><strong>Host About:</strong> {{ property.host?.host_about }}</p>
+    <p><strong>Host Location:</strong> {{ property.host?.host_location }}</p>
+    <p><strong>Host Neighborhood:</strong> {{ property.host?.host_neighbourhood }}</p>
+    <p><strong>Address:</strong> {{ property.address?.street }}, {{ property.address?.suburb }}, {{
+      property.address?.country }}</p>
+    <p><strong>Coordinates:</strong> [{{ property.address?.location?.coordinates[0] }}, {{
+      property.address?.location?.coordinates[1] }}]</p>
+
+    <a [href]="property.listing_url" target="_blank">View Listing</a> &nbsp;&nbsp;
+    <a *ngIf="isAdmin" (click)="deleteListing()">Delete Property</a> &nbsp;&nbsp;
     <a routerLink="/view-listings">Back to All Listings</a>
   </div>
 </div>
-
-

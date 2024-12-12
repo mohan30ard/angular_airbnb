@@ -40,7 +40,8 @@ export class SideNavComponent implements OnInit {
   screenWidth = 0;
   navData = navbarData;
   multiple: boolean = false;
-
+  isAdmin: boolean = false;
+  userRole: string = this.userDetails?.role || 'user';
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.screenWidth = window.innerWidth;
@@ -57,12 +58,20 @@ export class SideNavComponent implements OnInit {
       this.authService.getUserDetails().subscribe({
         next: (response: any) => {
           this.userDetails = response;
+          this.userRole = this.userDetails?.role || 'user';
           console.log('User details:', this.userDetails);
+          this.filterNavDataBasedOnRole();
         },
         error: (err) => {
           console.error('Failed to fetch user details:', err);
         },
       });
+  }
+
+  filterNavDataBasedOnRole() {
+    this.navData = this.navData.filter(item =>
+      !item.roles || item.roles.includes(this.userRole) // Filter items based on roles
+    );
   }
 
   toggleCollapse(): void {

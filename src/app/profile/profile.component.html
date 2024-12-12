@@ -1,1 +1,23 @@
-<p>profile works!</p>
+<title>User Profile</title>
+
+<div class="container">
+  <h1>User Profile</h1>
+
+  <div *ngIf="user; else loading">
+    <div class="profile-info">
+      <p><strong>Username:</strong> {{ user.username }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>First Name:</strong> {{ user.firstName }}</p>
+      <p><strong>Last Name:</strong> {{ user.lastName }}</p>
+      <p><strong>Role:</strong> {{ user.role }}</p>
+    </div>
+
+    <div class="actions">
+      <button (click)="logout()">Logout</button>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <p>Loading user information...</p>
+  </ng-template>
+</div>

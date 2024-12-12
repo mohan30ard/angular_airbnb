@@ -38,9 +38,12 @@ export class ViewListingComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['currentPage']) {
+    if (changes['currentPage'] || changes['itemsPerPage']) {
       this.fetchResults(); // Fetch new data when currentPage changes
     }
+    // if (changes['itemsPerPage']) {
+    //   this.fetchResults(); // Fetch new data when itemsPerPage changes
+    // }
   }
 
   // Method to fetch results with the applied filters
@@ -50,7 +53,7 @@ export class ViewListingComponent implements OnInit, OnChanges {
     // Build the filter query parameters
   const queryParams: { [key: string]: string | number } = {
     page: this.currentPage,
-    limit: this.itemsPerPage,
+    perPage: this.itemsPerPage,
   };
 
   // Conditionally add filters only if they are set
@@ -70,8 +73,10 @@ export class ViewListingComponent implements OnInit, OnChanges {
     queryParams['listingId'] = this.filter.listingId.trim();
   }
 
+  console.log('queryParams:', queryParams);
     // Call the service with the filter query params
     this.listingService.getAllListings(queryParams).subscribe({
+
       next: (response: Listing_og[]) => {
         this.data = response.map((listing) => {
           // Ensure price is a valid number

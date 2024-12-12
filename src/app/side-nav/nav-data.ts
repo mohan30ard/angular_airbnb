@@ -14,7 +14,8 @@ export const navbarData: INavbarData[] = [
     {
         routeLink: 'add-listing',
         icon: 'fal fa-plus-square',
-        label: 'Add Listing'
+        label: 'Add Listing',
+        roles: ['admin']
     },
     {
         routeLink: 'view-listings',
@@ -24,7 +25,8 @@ export const navbarData: INavbarData[] = [
     {
         routeLink: 'update-listing',
         icon: 'fal fa-edit',
-        label: 'Update Listing'
+        label: 'Update Listing',
+        roles: ['admin']
     },
     {
       routeLink: 'profile',
