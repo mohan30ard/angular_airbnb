@@ -1,0 +1,27 @@
+<div class="property-detail-container">
+  <h1>Beautiful Modern Apartment</h1>
+  <div class="image-container">
+    <img *ngIf="property.images?.picture_url; else placeholder"
+         [src]="property.images.picture_url"
+         [alt]="property.name" />
+    <ng-template #placeholder>
+      <img src="https://a0.muscache.com/im/pictures/72844c8c-fec2-440e-a752-bba9b268c361.jpg?aki_policy=large" alt="placeholder" />
+    </ng-template>
+  </div>
+
+  <div class="property-info">
+    <p><strong>Name:</strong>{{property.name}}</p>
+    <p><strong>Property Type:</strong>{{property.property_type}}</p>
+    <p><strong>Price:</strong>{{property.price}}</p>
+    <p><strong>Min Nights:</strong>{{property.minimum_nights}}</p>
+    <p><strong>Max Nights:</strong>{{property.maximum_nights}}</p>
+    <p><strong>Accommodates:</strong>{{property.accommodates}}</p>
+    <p><strong>Country:</strong>{{ property.address?.country }}</p>
+    <p><strong>Description:</strong>{{property.summary}}</p>
+    <a href="https://www.example.com" target="_blank">Book Property</a> &nbsp;&nbsp;
+    <a href="javascript:void(0)" (click)="deleteListing()">Delete Property</a> &nbsp;&nbsp;
+    <a routerLink="/view-listings">Back to All Listings</a>
+  </div>
+</div>
+
+

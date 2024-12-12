@@ -1,3 +1,82 @@
-<app-side-nav></app-side-nav>
-<p>dashboard works!</p>
-<router-outlet></router-outlet>
+<div class="dashboard-container">
+  <!-- Header Section -->
+  <div class="header">
+    <h1>Welcome, {{ userDetails?.username }}!</h1>
+    <p>Manage your account, bookings, and settings.</p>
+  </div>
+
+  <!-- User Dashboard Section -->
+  <div class="user-dashboard">
+    <div class="section">
+      <h2>Your Profile</h2>
+      <p>Email: {{ userDetails?.email }}</p>
+      <p>Joined on: {{ userDetails?.createdAt | date }}</p>
+      <p>Update your personal information and preferences.</p>
+      <button (click)="navigateToProfile()">Edit Profile</button>
+    </div>
+
+    <div class="section">
+      <h2>Your Bookings</h2>
+      <p>You have {{ recentBookings.length }} upcoming bookings.</p>
+      <button (click)="navigateToMyBookings()">View Bookings</button>
+    </div>
+
+    <div class="section">
+      <h2>Messages</h2>
+      <p>You have 5 new messages.</p>
+      <button (click)="navigateToMessages()">View Messages</button>
+    </div>
+  </div>
+
+  <!-- Recent Activities Section with Horizontal Scroll -->
+  <div class="recent-activities">
+    <h2>Recent Activities</h2>
+    <div *ngIf="isLoadingActivities">
+      <p>Loading activities...</p>
+    </div>
+    <div class="activity-cards" *ngIf="!isLoadingActivities && listings.length > 0; else noActivities">
+      <div class="activity-card" *ngFor="let listing of listings">
+        <img [src]="listing.images.picture_url" alt="Listing Image" />
+        <div class="activity-content">
+          <h3>{{ listing.name }}</h3>
+          <p>{{ listing.property_type }} - {{ listing.bedrooms }} Bedroom(s)</p>
+          <p>Price: ${{ listing.price }}</p>
+          <button (click)="navigateToViewListings()">View Details</button>
+        </div>
+      </div>
+    </div>
+    <ng-template #noActivities>
+      <p>No recent activities to display.</p>
+    </ng-template>
+  </div>
+
+  <!-- Recent Bookings Section with Horizontal Scroll -->
+  <div class="recent-bookings">
+    <h2>Your Recent Bookings</h2>
+    <div class="booking-cards">
+      <div class="booking-card" *ngFor="let booking of recentBookings">
+        <img [src]="booking.imageUrl" alt="Booking Image" />
+        <div class="booking-content">
+          <h3>{{ booking.title }}</h3>
+          <p>{{ booking.date | date }}</p>
+          <button (click)="navigateToMyBookings()">View Booking</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recommendations Section with Horizontal Scroll -->
+  <div class="recommendations">
+    <h2>Recommended Stays for You</h2>
+    <div class="recommendation-cards">
+      <div class="recommendation-card" *ngFor="let recommendation of recommendations">
+        <img [src]="recommendation.imageUrl" alt="Recommendation Image" />
+        <div class="recommendation-content">
+          <h3>{{ recommendation.title }}</h3>
+          <p>{{ recommendation.description }}</p>
+          <button (click)="navigateToViewListings()">Explore</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

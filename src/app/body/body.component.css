@@ -1,0 +1,31 @@
+.body {
+  width: calc(100% - 2rem);
+  height: 100vh;
+  margin-left: 2rem;
+  z-index: 0;
+  position: relative;
+  top: 0;
+  transition: all 0.5s ease;
+  background: #f4f7fa;
+
+  /* Add padding to prevent overlap with the fixed navbar */
+  padding: 4rem 0 0 3rem; /* 60px is the navbar height */
+}
+
+
+.body-trimmed {
+  width: calc(100% - 13.5625rem);
+  margin-left: 13.5625rem;
+
+  /* Ensure padding-top matches the standard body padding */
+  padding: 4rem 0 0 3rem;
+}
+
+.body-md-screen {
+  width: calc(100% - 2rem);
+  margin-left: 2rem;
+
+  /* Same padding for medium screen sizes */
+  padding: 4rem 0 0 3rem;
+}
+

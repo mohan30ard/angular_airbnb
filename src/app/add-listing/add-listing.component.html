@@ -1,1 +1,87 @@
-<p>add-listing works!</p>
+<div class="add-listing-container">
+  <h2>Add a New Listing</h2>
+
+  <form [formGroup]="addListingForm" (ngSubmit)="onSubmit()" class="add-listing-form">
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input id="name" formControlName="name" type="text" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+      <label for="summary">Summary</label>
+      <textarea id="summary" formControlName="summary" class="form-control" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="property_type">Property Type</label>
+      <select id="property_type" formControlName="property_type" class="form-control" required>
+        <option value="" disabled selected>Select Property Type</option>
+        <option value="house">House</option>
+        <option value="apartment">Apartment</option>
+        <option value="studio">Studio</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="room_type">Room Type</label>
+      <select id="room_type" formControlName="room_type" class="form-control" required>
+        <option value="" disabled selected>Select Room Type</option>
+        <option value="entire_place">Entire Place</option>
+        <option value="private_room">Private Room</option>
+        <option value="shared_room">Shared Room</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="minimum_nights">Minimum Nights</label>
+      <input id="minimum_nights" formControlName="minimum_nights" type="number" class="form-control" min="1" required />
+    </div>
+
+    <div class="form-group">
+      <label for="maximum_nights">Maximum Nights</label>
+      <input id="maximum_nights" formControlName="maximum_nights" type="number" class="form-control" min="1" required />
+    </div>
+
+    <div class="form-group">
+      <label for="accommodates">Accommodates</label>
+      <input id="accommodates" formControlName="accommodates" type="number" class="form-control" min="1" required />
+    </div>
+
+    <div class="form-group">
+      <label for="bedrooms">Bedrooms</label>
+      <input id="bedrooms" formControlName="bedrooms" type="number" class="form-control" min="1" required />
+    </div>
+
+    <div class="form-group">
+      <label for="beds">Beds</label>
+      <input id="beds" formControlName="beds" type="number" class="form-control" min="1" required />
+    </div>
+
+    <div class="form-group">
+      <label for="bathrooms">Bathrooms</label>
+      <input id="bathrooms" formControlName="bathrooms" type="number" class="form-control" min="1" required />
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input id="price" formControlName="price" type="number" class="form-control" min="0" required />
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input id="address" formControlName="address" type="text" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+      <button type="submit" [disabled]="addListingForm.invalid" class="submit-button">Add Listing</button>
+    </div>
+
+  </form>
+
+  <div *ngIf="errorMessages.length > 0" class="error-messages">
+    <ul>
+      <li *ngFor="let message of errorMessages">{{ message }}</li>
+    </ul>
+  </div>
+</div>

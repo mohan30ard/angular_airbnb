@@ -1,10 +1,12 @@
-import { Component, EventEmitter, HostListener, Output } from '@angular/core';
+import { animate, keyframes, style, transition, trigger } from '@angular/animations';
+import { Component, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
+import { Router , RouterModule} from '@angular/router';
+import { fadeInOut, INavbarData } from './helper';
 import { navbarData } from './nav-data';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
-import { animate, keyframes, style, transition, trigger } from '@angular/animations';
-import { fadeInOut, INavbarData } from './helper';
 import { SublevelMenuComponent } from './sublevel-menu.component';
+import { User } from '../models/user.model';
+import { AuthService } from '../auth.service';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -14,9 +16,9 @@ interface SideNavToggle {
 @Component({
   selector: 'app-side-nav',
   standalone: true,
-  imports: [CommonModule, RouterModule, SublevelMenuComponent],
+  imports: [CommonModule , RouterModule, SublevelMenuComponent ],
   templateUrl: './side-nav.component.html',
-  styleUrl: './side-nav.component.css',
+  styleUrls: ['./side-nav.component.css'],
   animations: [
     fadeInOut,
     trigger('rotate', [
@@ -31,7 +33,8 @@ interface SideNavToggle {
     ])
   ]
 })
-export class SideNavComponent {
+export class SideNavComponent implements OnInit {
+  userDetails :User | null = null;
   @Output() onToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
   collapsed = false;
   screenWidth = 0;
@@ -47,9 +50,19 @@ export class SideNavComponent {
     }
   }
 
-  constructor(public router: Router) {
-    this.screenWidth = window.innerWidth;
-    // this.multiple = this.screenWidth > 768;
+  constructor(public router: Router,private authService: AuthService) {}
+
+  ngOnInit(): void {
+      this.screenWidth = window.innerWidth;
+      this.authService.getUserDetails().subscribe({
+        next: (response: any) => {
+          this.userDetails = response;
+          console.log('User details:', this.userDetails);
+        },
+        error: (err) => {
+          console.error('Failed to fetch user details:', err);
+        },
+      });
   }
 
   toggleCollapse(): void {
@@ -80,5 +93,4 @@ export class SideNavComponent {
       }
     }
   }
-
 }

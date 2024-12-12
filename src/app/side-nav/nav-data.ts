@@ -7,84 +7,33 @@ export const navbarData: INavbarData[] = [
         label: 'Dashboard'
     },
     {
-        routeLink: 'products',
-        icon: 'fal fa-box-open',
-        label: 'Products',
-        items: [
-            {
-                routeLink: 'products/level1.1',
-                label: 'Level 1.1',
-                items: [
-                    {
-                        routeLink: 'products/level2.1',
-                        label: 'Level 2.1',
-                    },
-                    {
-                        routeLink: 'products/level2.2',
-                        label: 'Level 2.2',
-                        items: [
-                            {
-                                routeLink: 'products/level3.1',
-                                label: 'Level 3.1'
-                            },
-                            {
-                                routeLink: 'products/level3.2',
-                                label: 'Level 3.2'
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                routeLink: 'products/level1.2',
-                label: 'Level 1.2',
-            }
-        ]
+      routeLink: 'view-bookings',
+      icon: 'fal fa-calendar-check',
+      label: 'View Bookings'
     },
     {
-        routeLink: 'statistics',
-        icon: 'fal fa-chart-bar',
-        label: 'Statistics'
+        routeLink: 'add-listing',
+        icon: 'fal fa-plus-square',
+        label: 'Add Listing'
     },
     {
-        routeLink: 'coupens',
-        icon: 'fal fa-tags',
-        label: 'Coupens',
-        items: [
-            {
-                routeLink: 'coupens/list',
-                label: 'List Coupens'
-            },
-            {
-                routeLink: 'coupens/create',
-                label: 'Create Coupens'
-            }
-        ]
+        routeLink: 'view-listings',
+        icon: 'fal fa-eye',
+        label: 'View Listings'
     },
     {
-        routeLink: 'pages',
-        icon: 'fal fa-file',
-        label: 'Pages'
+        routeLink: 'update-listing',
+        icon: 'fal fa-edit',
+        label: 'Update Listing'
     },
     {
-        routeLink: 'media',
-        icon: 'fal fa-camera',
-        label: 'Media'
+      routeLink: 'profile',
+      icon: 'fal fa-user',
+      label: 'Profile'
     },
     {
-        routeLink: 'settings',
-        icon: 'fal fa-cog',
-        label: 'Settings',
-        expanded: true,
-        items: [
-            {
-                routeLink: 'settings/profile',
-                label: 'Profile'
-            },
-            {
-                routeLink: 'settings/customize',
-                label: 'Customize'
-            }
-        ]
-    },
+      routeLink: 'logout',
+      icon: 'fal fa-sign-out',
+      label: 'Logout'
+    }
 ];

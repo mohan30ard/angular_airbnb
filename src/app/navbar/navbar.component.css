@@ -3,3 +3,12 @@
     flex: 1 1 auto;
 }
 
+.fixed-toolbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 63px; /* Set the height of the navbar */
+  z-index: 1; /* Ensure it stays above other content */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+  background-color: #ff5a5f; /* Optional: Change the background color */
+}

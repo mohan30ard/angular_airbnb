@@ -11,39 +11,23 @@ import { BookListingComponent } from './book-listing/book-listing.component';
 import { AddListingComponent } from './add-listing/add-listing.component';
 import { ViewListingComponent } from './view-listing/view-listing.component';
 import { ViewBookingsComponent } from './view-bookings/view-bookings.component';
+import { ViewPropertyComponent } from './view-property/view-property.component';
+import { UpdateListingComponent } from './update-listing/update-listing.component';
 export const routes: Routes = [
-  // { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default route
+  { path: '', redirectTo: '/welcome', pathMatch: 'full' }, // Default route
+  // { path: '/', redirectTo: '/welcome', pathMatch: 'full' },
   { path: 'register' , component: RegisterComponent }, // Public route
   { path: 'aboutUs', component: AboutUsComponent }, // Public route
   { path: 'login', component: LoginComponent }, // Public route
-  { path: 'welcome', component: LandingComponent , canActivate: [AuthGuard] }, // Protected route
-  { path : 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuard],
-
-    children: [
-      {
-        path: 'profile',
-        component: ProfileComponent
-      },
-      {
-        path: 'book-listing',
-        component: BookListingComponent
-      },
-      {
-        path: 'add-listing',
-        component: AddListingComponent
-      },
-      {
-        path: 'view-listing',
-        component: ViewListingComponent
-      },
-      {
-        path: 'view-booking',
-        component: ViewBookingsComponent
-      }
-    ]
-  }, // Protected route
-  { path: '**', redirectTo: '/login' }, // Wildcard route for 404 handling
+  { path: 'welcome', component: LandingComponent },// Protected route
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }, // Protected route
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }, // Protected route
+  { path: 'book-listing', component: BookListingComponent, canActivate: [AuthGuard] }, // Protected route
+  { path: 'add-listing', component: AddListingComponent, canActivate: [AuthGuard] }, // Protected route
+  { path: 'view-listings', component: ViewListingComponent }, // Protected route
+  { path: 'view-bookings', component: ViewBookingsComponent }, // Protected route
+  { path: 'view-property', component: ViewPropertyComponent }, // Protected route
+  { path: 'update-listing', component: UpdateListingComponent }, // Protected route
+  // { path: '**', redirectTo: '/login' }, // Wildcard route for 404 handling
 ];
 

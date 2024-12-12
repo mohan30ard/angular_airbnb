@@ -1,1 +1,78 @@
-<p>view-listing works!</p>
+<div class="filter-container">
+  <h2>Filter Listings</h2>
+  <div class="filter-form">
+    <label for="priceMin">Min Price ($):</label>
+    <input id="priceMin" [(ngModel)]="filter.priceMin" type="number" placeholder="Min Price" />
+
+    <label for="priceMax">Max Price ($):</label>
+    <input id="priceMax" [(ngModel)]="filter.priceMax" type="number" placeholder="Max Price" />
+
+    <label for="minNights">Min Nights:</label>
+    <input id="minNights" [(ngModel)]="filter.minNights" type="number" placeholder="Min Nights" />
+
+    <label for="accommodates">Accommodates:</label>
+    <input id="accommodates" [(ngModel)]="filter.accommodates" type="number" placeholder="Accommodates" />
+
+    <label for="listingId">Listing ID:</label>
+    <input id="listingId" [(ngModel)]="filter.listingId" type="text" placeholder="Listing ID" />
+
+    <button (click)="applyFilters()">Apply Filters</button>
+  </div>
+</div>
+
+<div class="results-container">
+  <h1>All Listings</h1>
+
+  <div *ngIf="isLoadingListings" class="loading">
+    <p>Loading listings...</p>
+  </div>
+
+  <!-- Displaying listings or no results message -->
+  <div *ngIf="data.length; else noResults">
+    <div class="card-container">
+      <div *ngFor="let item of data" class="card">
+        <div class="image-container">
+          <img *ngIf="item.images?.picture_url; else placeholder"
+               class="card-image"
+               [src]="item.images.picture_url"
+               [alt]="item.name" />
+          <ng-template #placeholder>
+            <img class="card-image"
+                 src="https://a0.muscache.com/im/pictures/72844c8c-fec2-440e-a752-bba9b268c361.jpg?aki_policy=large"
+                 alt="placeholder" />
+          </ng-template>
+
+          <!-- Highlight for superhosts -->
+          <div *ngIf="item.host?.host_is_superhost" class="guest-favourite">
+            Guest favourite
+          </div>
+        </div>
+
+        <div class="card-content">
+          <h3>{{ item.name }}</h3>
+          <p>Property Type: {{ item.property_type }}</p>
+          <p>Price: ${{ item.price }}</p>
+          <p>
+            Min Nights: {{ item.minimum_nights }}<br>
+            Max Nights: {{ item.maximum_nights }}
+          </p>
+          <p>Accommodates: {{ item.accommodates }} guests</p>
+          <p>Country: {{ item.address?.country }}</p>
+          <a href="javascript:void(0)" (click)="onSelectListing(item._id)">View Property</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination Controls -->
+    <div class="pagination-controls">
+      <button (click)="previousPage()" [disabled]="currentPage === 1" class="pagination-btn">Previous</button>
+      <span class="page-info">Page {{ currentPage }} of {{ totalPages() }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages()" class="pagination-btn">Next</button>
+    </div>
+  </div>
+
+  <!-- No results or error state -->
+  <ng-template #noResults>
+    <p *ngIf="!isLoadingListings">No listings found. Please refine your search.</p>
+  </ng-template>
+</div>

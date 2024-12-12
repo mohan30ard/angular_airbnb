@@ -1,2 +1,60 @@
-<p>landing works!</p>
-<button type="reset" (click)="logout()">Logout</button>
+<div class="welcome-container">
+  <!-- Main Heading and Description -->
+  <h1>Welcome to Airbnb</h1>
+  <p>Your gateway to finding amazing stays and unforgettable experiences around the globe.</p>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <img src="/images/10-off.png" alt="Stunning vacation spot" style="height: 400px; width: 600px;" />
+  </div>
+
+  <!-- Call-to-Action Section -->
+  <div class="cta-buttons">
+    <h2>Ready to start your journey?</h2>
+    <button (click)="navigateToLogin()">Login</button>
+    <button (click)="navigateToViewListings()">Explore Stays</button>
+  </div>
+
+  <!-- Features Section -->
+  <div class="features">
+    <div class="feature-card">
+      <img src="images/sample-03.jpg" alt="Stay Icon" style="height: 200px; width: 200px;" />
+      <h3>Stay Anywhere</h3>
+      <p>Find unique accommodations, from cozy apartments to luxurious retreats.</p>
+    </div>
+    <div class="feature-card">
+      <img src="images/sample-02.jpg" alt="Experience Icon" style="height: 200px; width: 200px;" />
+      <h3>Unforgettable Experiences</h3>
+      <p>Book exciting adventures and activities hosted by locals worldwide.</p>
+    </div>
+    <div class="feature-card">
+      <img src="images/sample-06.jpg" alt="Community Icon" style="height: 200px; width: 200px;" />
+      <h3>Join the Community</h3>
+      <p>Connect with millions of travelers and hosts to make meaningful connections.</p>
+    </div>
+    <div class="feature-card">
+      <img src="/images/sample-04.jpg" alt="Safety Icon" style="height: 200px; width: 200px;" />
+      <h3>Your Safety Matters</h3>
+      <p>Secure transactions and verified listings for worry-free travel.</p>
+    </div>
+  </div>
+
+  <!-- Testimonials Section -->
+  <div class="testimonials">
+    <h2>What Our Users Say</h2>
+    <div class="testimonial-card">
+      <p>"Airbnb made my dream vacation come true! I found the perfect beachside villa, and the host was amazing." -
+        <strong>Sarah L.</strong></p>
+    </div>
+    <div class="testimonial-card">
+      <p>"The experiences I booked through Airbnb were unforgettable! Highly recommend for authentic local activities."
+        - <strong>Mike T.</strong></p>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>© 2024 Mock Airbnb. All rights reserved.</p>
+    <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact Us</a>
+  </footer>
+</div>

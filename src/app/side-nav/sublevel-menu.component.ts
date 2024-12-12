@@ -1,8 +1,10 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
-import { Router ,RouterModule} from '@angular/router';
+import { Router ,RouterModule } from '@angular/router';
 import { fadeInOut, INavbarData } from './helper';
 import { CommonModule } from '@angular/common';
+
+
 
 @Component({
   selector: 'app-sublevel-menu',

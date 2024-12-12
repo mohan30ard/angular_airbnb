@@ -1,35 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { User } from '../models/user.model';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css'
 })
 export class LandingComponent implements OnInit {
-userDetails : User | null = null;
-  constructor(private authService:AuthService,
-              private router:Router
-  ) { }
+  constructor(private router:Router) { }
 
-  ngOnInit() {
-    this.authService.getUserDetails().subscribe({
-      next: (response: any) => {
-        this.userDetails = response;
-        console.log('User details:', this.userDetails);
-      },
-      error: (err) => {
-        console.error('Failed to fetch user details:', err);
-      },
-    });
-  }
+  ngOnInit() {}
 
-  logout() {
-    localStorage.clear();  // This will clear all items in localStorage
+  navigateToLogin() {
     this.router.navigate(['/login']);
   }
+
+  navigateToViewListings() {
+    this.router.navigate(['/view-listings']);
+  }
+
 }

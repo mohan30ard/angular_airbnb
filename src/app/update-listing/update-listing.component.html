@@ -1,0 +1,60 @@
+<div class="update-listing-container">
+  <h2>Update Listing</h2>
+
+  <!-- Listing ID (Hidden, pre-filled or set by URL parameter) -->
+  <div class="form-group">
+    <label for="listingId">Listing ID:</label>
+    <input id="listingId" [(ngModel)]="listingId" name="listingId" type="text" class="form-control" required/>
+  </div>
+
+  <div class="form-group">
+    <button type="button" (click)="getListing()" class="btn btn-primary">Find Listing</button>
+  </div>
+
+  <form (ngSubmit)="updateListing()" #updateForm="ngForm" class="update-form">
+    <!-- Only show the following fields if listingData is available -->
+    <div *ngIf="updateList">
+
+      <!-- Name -->
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input id="name" [(ngModel)]="listingData.name" name="name" type="text" class="form-control" required/>
+      </div>
+
+      <!-- Price -->
+      <!-- <div class="form-group">
+        <label for="price">Price ($):</label>
+        <input id="price" [(ngModel)]="listingData.price" name="price" type="number" class="form-control" required/>
+      </div> -->
+
+      <!-- Minimum Nights -->
+      <div class="form-group">
+        <label for="minimum_nights">Minimum Nights:</label>
+        <input id="minimum_nights" [(ngModel)]="listingData.minimum_nights" name="minimum_nights" type="number" class="form-control" required/>
+      </div>
+
+      <!-- Accommodates -->
+      <div class="form-group">
+        <label for="accommodates">Accommodates:</label>
+        <input id="accommodates" [(ngModel)]="listingData.accommodates" name="accommodates" type="number" class="form-control" required/>
+      </div>
+
+      <!-- Property Type -->
+      <div class="form-group">
+        <label for="property_type">Property Type:</label>
+        <input id="property_type" [(ngModel)]="listingData.property_type" name="property_type" type="text" class="form-control" required/>
+      </div>
+
+
+      <!-- Submit Button -->
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Update Listing</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+</div>

@@ -1,8 +1,9 @@
-<mat-toolbar color="primary" class="mat-elevation-z8">
+<mat-toolbar color="primary" class="mat-elevation-z8 fixed-toolbar">
   <!-- add logo -->
   <span>Airbnb</span>
   <div class="spacer"></div>
   <a button mat-button routerLink="welcome">Home</a>
+  <a button mat-button *ngIf="isAuthenticated()" routerLink="dashboard">Dashboard</a>
   <a button mat-button routerLink="aboutUs">About Us</a>
   <a button mat-button *ngIf="!isAuthenticated()" routerLink="login">Login</a>
   <a button mat-raised-button *ngIf="!isAuthenticated()" routerLink="register">Register</a>
